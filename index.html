@@ -1,0 +1,48 @@
+<html>
+	<head>
+		<title>FullScreenClock</title>
+		<style>
+			#textarea {
+			    height: 100%;
+				text-align: center;
+			    display: grid;
+			    align-items: center;
+			    font-size: 12vh;
+			    font-family: Helvetica, sans-serif;
+			}
+			.text {
+				margin: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="textarea">
+			<h1 id="time" class="text"></h1>
+			<p id="date" class="text"></p>
+		</div>
+		<script>
+			function zeroPad(num, places) {
+				var zero = places - num.toString().length + 1;
+				return Array(+(zero > 0 && zero)).join("0") + num;
+			}
+			function getOrdinalNum(n) {
+					return n + (n > 0 ? ['th', 'st', 'nd', 'rd'][(n > 3 && n < 21) || n % 10 > 3 ? 0 : n % 10] : '');
+			}
+			var time = document.getElementById("time");
+			var date = document.getElementById("date");
+			var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+			function updateText(){
+				var hour = new Date().getHours();
+				var alt = "AM";
+				if (hour > 12) {
+					hour = hour-12;
+					alt = "PM";
+				}
+				time.innerHTML = hour + ":" + zeroPad(new Date().getMinutes(), 2) + ":" + zeroPad(new Date().getSeconds(), 2) + " " + alt;
+				date.innerHTML = months[new Date().getMonth()] + " " + getOrdinalNum(new Date().getDate()) + ", " + new Date().getFullYear();
+			}
+			setInterval((function(){updateText();}), 1000);
+			updateText();
+		</script>
+	</body>
+</html>
