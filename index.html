@@ -4,21 +4,22 @@
 		<style>
 			#textarea {
 			    height: 100%;
+			    width: 100%;
 				text-align: center;
 			    display: grid;
 			    align-items: center;
-			    font-size: 12vh;
+			    font-size: 11.5vh;
 			    font-family: Helvetica, sans-serif;
 			}
-			.text {
+			#time #date {
 				margin: 0;
 			}
 		</style>
 	</head>
 	<body>
 		<div id="textarea">
-			<h1 id="time" class="text"></h1>
-			<p id="date" class="text"></p>
+			<h1 id="time"></h1>
+			<p id="date"></p>
 		</div>
 		<script>
 			function zeroPad(num, places) {
