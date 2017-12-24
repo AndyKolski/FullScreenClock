@@ -34,13 +34,9 @@
 			var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 			function updateText(){
 				var hour = new Date().getHours();
-				var alt = "AM";
-				if (hour >= 12) {
-	     			alt = "PM";
-				}
-				if (hour > 12) {
-				    hour = hour-12;
-				}
+				var alt = (hour >= 12)? "PM" : "AM";
+				hour = ((hour + 11) % 12 + 1);
+
 				time.innerHTML = hour + ":" + zeroPad(new Date().getMinutes(), 2) + ":" + zeroPad(new Date().getSeconds(), 2) + " " + alt;
 				date.innerHTML = months[new Date().getMonth()] + " " + getOrdinalNum(new Date().getDate()) + ", " + new Date().getFullYear();
 			}
